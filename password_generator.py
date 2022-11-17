@@ -2,6 +2,8 @@
 #password generator
 #
 import random
+from io import open
+file = open("prueba.txt", "a")
 def generator_password():
 
     string_lower = "abcdefghijklmnopqrstuvwxyz"
@@ -27,21 +29,30 @@ def generator_password():
             numbers = random.randint(0,9)
             new_pass += str(numbers)
         return new_pass
+
+def register1():
+    file = open("prueba.txt","a")
+    file.write(app +" : "+ password +"\n")
+    file.close()
+    #return
+
 ###
 register = {}
-run = True
-while run:
+user_input = "0"
+
+while user_input!="3":
     print ("1. Generator Password")
     print ("2. Get Password")
     print ("3. Exit")
-    user_input = int(input("Your option: "))
+    user_input = input("Your option: ")
     
-    if user_input == 1:
+    if user_input == "1":
         app = input("Name of your application: ")
         password = generator_password()
         register[app] = password
         print("Your password is: " + password)
-    elif user_input == 2:
+        register1()
+    elif user_input == "2":
         app = input("Name of your application: ")
         if register.get(app,0) == 0:
             print("No password was generated for that app, choose another option")
@@ -50,6 +61,6 @@ while run:
         
     else:
         ##valor del while infinito = False
-        run = False
+        user_input = "3"
         print("End of program")
-    
+print("Exit") 
